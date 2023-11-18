@@ -22,18 +22,13 @@ Route::controller(HomeController::class)->group(function( ){
 Route::controller(ClientController::class)->group(function( ){
     Route::get('/category/{id}/{slug}', 'CategoryPage')->name('category');
     Route::get('/singleproduct/{id}/{slug}', 'SingleProduct')->name('singleproduct');
-    Route::get('/addtocart', 'AddToCart')->name('addtocart');
-    Route::get('/checkout', 'Checkout')->name('checkout');
-    Route::get('/userprofile', 'UserProfile')->name('userprofile');
     Route::get('/newrelease', 'NewRelease')->name('newrelease');
-    Route::get('/todaysdeal', 'TodaysDeal')->name('todaysdeal');
-    Route::get('/customservice', 'CustomerService')->name('customerservice');
-
 });
 
 Route::middleware(['auth' , 'role:user'])->group(function(){
     Route::controller(ClientController::class)->group(function( ){
-        Route::get('/addtocart', 'AddToCart')->name('addtocart');
+        Route::get('/addtocart', 'AddToCart')->name('addtocart');  
+        Route::post('/addproducttocart', 'AddProductToCart')->name('addproducttocart');
         Route::get('/checkout', 'Checkout')->name('checkout');
         Route::get('/userprofile', 'UserProfile')->name('userprofile');
         Route::get('/userprofile/pendingorder', 'PendingOrder')->name('pendingorders');
